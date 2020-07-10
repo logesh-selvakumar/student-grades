@@ -7,7 +7,10 @@ cnv.width = 800;
 cnv.height = 600;
 
 // Global Variables
-let grades = [60, 70, 45, 20, 40, 90, 100, 30, 45, 75, 40, 80];
+let grades = [];
+for (n = 0; n < 50; n++) {
+    grades.push(Math.random()*100-0);
+}
 let max = 100; // grade values should be b/t 0 and max
 
 // Main Program Loop
@@ -55,7 +58,7 @@ function mainMenu() {
     } else if (selection == 'last50') {
         // Set the grade of the last student to 50. 
         outputEl.innerHTML = 'Last grade to 50';
-        grades[11] = 50;
+        grades[grades.length-1] = 50;
     } else if (selection == 'random100') {
         // Set the grade of a random student to 100.
         outputEl.innerHTML = 'Random grade to 100';

@@ -12,7 +12,7 @@ for (n = 0; n < 50; n++) {
     grades.push(Math.random()*100-0);
 }
 let max = 100; // grade values should be b/t 0 and max
-
+let value = 50;
 // Main Program Loop
 requestAnimationFrame(draw);
 
@@ -73,16 +73,22 @@ function mainMenu() {
         grades.pop();
     } else if (selection == 'count50') {
         // Count how many grades are below 50.  Output the result.
-        let value = 50;
-        let count  = grades.filter(function(val) 
+        function count(anArray)
         {
-            return val < value;
-        }).length;
-        outputEl.innerHTML = `Count grades below 50 : ${count}`;
+            let count = 0;
+            for (i=0; i<anArray.length; i++)
+            {
+                if (anArray[i] < value)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        outputEl.innerHTML = 'Count grades below 50: ' + count(grades);
     } else if (selection == 'change50') {
         // Change all grades that are below 50 to be equal to 50.
         outputEl.innerHTML = 'Change low grades to 50';
-        let value=50;
         for (i=0; i<grades.length; i++)
         {
             if (grades[i] < value)
@@ -107,12 +113,12 @@ function mainMenu() {
     } else if (selection == 'remove50') {
         // Remove all grades that are below 50.
         outputEl.innerHTML = 'Remove grades below 50';
-        let value=50;
         for (i=0; i<grades.length; i++)
         {
             if (grades[i] < value)
             {
                 grades.splice(i,1);
+                i--;
             }
         }
     } 
